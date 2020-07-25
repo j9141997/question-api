@@ -50,6 +50,5 @@ module Api
           params.require(:question).permit(:text)
         end
     end
-
   end
 end
