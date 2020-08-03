@@ -1,7 +1,8 @@
 class DeviseTokenAuthCreateAccounts < ActiveRecord::Migration[6.0]
   def change
 
-    create_table(:accounts) do |t|
+    create_table(:accounts, id: false) do |t|
+      t.string :id, limit: 36, null: false, primary_key: true
       ## Required
       t.string :provider, :null => false, :default => "email"
       t.string :uid, :null => false, :default => ""

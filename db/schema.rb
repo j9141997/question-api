@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_02_134113) do
+ActiveRecord::Schema.define(version: 2020_08_03_141243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "accounts", force: :cascade do |t|
+  create_table "accounts", id: :string, limit: 36, force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -40,14 +40,21 @@ ActiveRecord::Schema.define(version: 2020_08_02_134113) do
   end
 
   create_table "answers", force: :cascade do |t|
+    t.string "text", null: false
+    t.bigint "question_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string "text"
+    t.boolean "public", default: true, null: false
+    t.string "account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_questions_on_account_id"
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "questions", "accounts"
 end
