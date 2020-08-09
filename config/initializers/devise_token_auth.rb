@@ -3,7 +3,7 @@ DeviseTokenAuth.setup do |config|
   config.change_headers_on_each_request = false
 
   # トークン有効期限
-  config.token_lifespan = 2.weeks
+  config.token_lifespan = 1.month
 
   config.headers_names = {:'access-token' => 'access-token',
                          :'client' => 'client',
