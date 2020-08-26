@@ -3,7 +3,8 @@ default: &default
   encoding: unicode
   host: db
   username: postgres
-  password: <%= Rails.application.credentials.db[:password] %>
+  # password: <%= Rails.application.credentials.db[:password] %>
+  password: root
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
@@ -18,4 +19,5 @@ production:
   <<: *default
   database: questionApi_production
   username: questionApi
-  password: <%= ENV['QUESTIONAPI_DATABASE_PASSWORD'] %>
+  # password: <%= ENV['QUESTIONAPI_DATABASE_PASSWORD'] %>
+  password: root
